@@ -5,7 +5,9 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
@@ -20,6 +22,8 @@ import android.os.HandlerThread;
 import android.util.Size;
 import android.view.Surface;
 import android.view.TextureView;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.Collections;
 
@@ -51,9 +55,13 @@ public class MainActivity extends AppCompatActivity {
      * The cameraDevice that we connected to.
      */
     private CameraDevice cameraDevice;
-    private TextureView textureView;
     private CameraCaptureSession cameraCaptureSession;
     private CaptureRequest captureRequest;
+
+    private TextureView textureView;
+    private Button captureButton;
+
+    public Bitmap capturedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         System.out.println("Creating");
         textureView = findViewById(R.id.texture_view);
+        captureButton = findViewById(R.id.button_capture);
 
         int CAMERA_REQUEST_CODE = 1510;
 
@@ -119,6 +128,15 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.cameraDevice = null;
             }
         };
+        captureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View V) {
+                capturedImage = textureView.getBitmap();
+                Intent areaSelect = new Intent(MainActivity.this, Image_BoxEditor.class);
+                startActivity(areaSelect);
+            }
+        });
+
     }
 
     /**
