@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Image to Text</string>
+    <string name="edit_text">Enter your text</string>
+    <string name="button_copy">Copy</string>
+    <string name="back_text">Back</string>
+    <string name="confirm_text">Confirm</string>
+    <string name="retake_photo">Change Photo</string>
 </resources>
