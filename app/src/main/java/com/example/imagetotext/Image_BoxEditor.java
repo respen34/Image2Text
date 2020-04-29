@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Image_BoxEditor extends AppCompatActivity {
+public abstract class  Image_BoxEditor extends AppCompatActivity {
     public Button confirmObj;
     public Button recaptureObj;
     @Override
@@ -26,8 +26,8 @@ public class Image_BoxEditor extends AppCompatActivity {
         recaptureObj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Image_BoxEditor.this, MainActivity.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(Image_BoxEditor.this, MainActivity.class);
+                startActivity(intent1);
             }
         });
     }
