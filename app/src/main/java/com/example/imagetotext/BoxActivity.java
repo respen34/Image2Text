@@ -22,7 +22,13 @@ public class BoxActivity extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bitmap bitmap = MainActivity.getCapturedImage();
+                Tesseract.setUpTesseract(BoxActivity.this);
+                String text = Tesseract.convertImage(bitmap, 0,0,
+                        bitmap.getWidth(), bitmap.getHeight());
+                System.out.println(text);
                 Intent intent = new Intent(BoxActivity.this, TextActivity.class);
+                intent.putExtra("text", text);
                 startActivity(intent);
             }
         });
