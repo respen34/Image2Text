@@ -34,8 +34,7 @@ public class  Image_BoxEditor extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-        Intent intent = getIntent();
-        Bitmap bitmap = (Bitmap) intent.getParcelableExtra("imageToTransmitKey");
+        Bitmap bitmap = MainActivity.getCapturedImage();
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
         //Bitmap bmp = BitmapFactory.decodeByteArray(buffer, start, a);
         imageView.setImageBitmap(bitmap);

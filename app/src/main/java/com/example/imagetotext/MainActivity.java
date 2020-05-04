@@ -69,11 +69,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println("Creating");
+
+        int CAMERA_REQUEST_CODE = 1510;
+
+        //System.out.println("Creating");
+
         textureView = findViewById(R.id.texture_view);
         captureButton = findViewById(R.id.button_capture);
 
-        int CAMERA_REQUEST_CODE = 1510;
+
 
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},
                 CAMERA_REQUEST_CODE);
@@ -139,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
                 //        capturedImage.getWidth(), capturedImage.getHeight());
                 //System.out.println(text);
                 Intent areaSelect = new Intent(MainActivity.this, Image_BoxEditor.class);
-                areaSelect.putExtra("imageToTransmitKey",capturedImage);
                 startActivity(areaSelect);
             }
         });
@@ -157,13 +160,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        System.out.println("resume");
         openBackgroundThread();
         // check to see if textureView is already available
         if (textureView.isAvailable()) {
             setUpCamera();
             openCamera();
         } else {
-            // if it isn't set the listener to catch it when it is
+            // if it isn't, set the listener to catch it when it is
             textureView.setSurfaceTextureListener(surfaceTextureListener);
         }
     }
