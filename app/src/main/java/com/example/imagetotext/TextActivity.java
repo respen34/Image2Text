@@ -2,6 +2,8 @@ package com.example.imagetotext;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,28 +12,29 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class TextActivity extends AppCompatActivity {
-    public Button copyButton;
-    public Button backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text);
 
-        EditText editText = findViewById(R.id.editText);
+        final EditText editText = findViewById(R.id.editText);
         Intent intent = getIntent();
 
         String text = intent.getExtras().getString("text", "");
         editText.setText(text, TextView.BufferType.NORMAL);
 
-        copyButton = findViewById(R.id.button_copy);
+        Button copyButton = findViewById(R.id.button_copy);
         copyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getIntent as text from previous
+                ClipboardManager cbManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("Copied Text",
+                        editText.getText());
+                cbManager.setPrimaryClip(clip);
             }
         });
 
-        backButton = findViewById(R.id.button_back2);
+        Button backButton = findViewById(R.id.button_back2);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
