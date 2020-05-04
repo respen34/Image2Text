@@ -1,51 +1,42 @@
 package com.example.imagetotext;
 
+import com.googlecode.tesseract.android.*;
+
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Environment;
-
-import com.googlecode.tesseract.android.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 
 public class Tesseract {
     private static String DATA_PATH;
-    private static String TESSDATA = "tessdata";
 
     public static void setUpTesseract(Context context) {
         DATA_PATH = context.getCacheDir().getAbsolutePath() + "/";
-        copyTessdata(context, TESSDATA);
+        copyTessdata(context);
     }
 
     /**
      * Copy tessdata files (located on assets/tessdata) to destination directory
-     *
-     * @param path - name of directory with .traineddata files
      */
-    private static void copyTessdata(Context context, String path) {
+    private static void copyTessdata(Context context) {
+        String TESSDATA = "tessdata";
         File cacheDir = new File(DATA_PATH + TESSDATA);
         File cacheFile = new File(DATA_PATH + TESSDATA, "eng.traineddata");
         try {
-            cacheDir.mkdirs();
-            cacheFile.createNewFile();
-            InputStream inputStream = context.getAssets().open("tessdata/eng.traineddata");
-            try {
-                FileOutputStream outputStream = new FileOutputStream(cacheFile);
-                try {
+            boolean unused = cacheDir.mkdirs();
+            if (cacheFile.createNewFile()) {
+                try (InputStream is = context.getAssets().open("tessdata/eng.traineddata");
+                     FileOutputStream os = new FileOutputStream(cacheFile)) {
+
                     byte[] buf = new byte[1024];
                     int len;
-                    while ((len = inputStream.read(buf)) > 0) {
-                        outputStream.write(buf, 0, len);
+                    while ((len = is.read(buf)) > 0) {
+                        os.write(buf, 0, len);
                     }
-                } finally {
-                    outputStream.close();
                 }
-            } finally {
-                inputStream.close();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -74,5 +65,9 @@ public class Tesseract {
         }
         tesseract.end();
         return text;
+    }
+
+    private static Bitmap preprocessBitmap() {
+        return null;
     }
 }

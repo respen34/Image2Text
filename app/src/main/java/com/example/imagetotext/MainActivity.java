@@ -27,8 +27,6 @@ import android.widget.Button;
 
 import java.util.Collections;
 
-import com.example.imagetotext.Tesseract;
-
 public class MainActivity extends AppCompatActivity {
     /**
      * The CameraManager object used to access the camera.
@@ -61,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
     private CaptureRequest captureRequest;
 
     private TextureView textureView;
-    private Button captureButton;
 
     public static Bitmap capturedImage;
 
@@ -75,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         //System.out.println("Creating");
 
         textureView = findViewById(R.id.texture_view);
-        captureButton = findViewById(R.id.button_capture);
+        Button captureButton = findViewById(R.id.button_capture);
 
 
 
@@ -138,11 +135,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View V) {
                 capturedImage = textureView.getBitmap();
-                //Tesseract.setUpTesseract(MainActivity.this);
-                //String text = Tesseract.convertImage(capturedImage, 0,0,
-                //        capturedImage.getWidth(), capturedImage.getHeight());
-                //System.out.println(text);
-                Intent areaSelect = new Intent(MainActivity.this, Image_BoxEditor.class);
+
+                Intent areaSelect = new Intent(MainActivity.this, BoxActivity.class);
                 startActivity(areaSelect);
             }
         });

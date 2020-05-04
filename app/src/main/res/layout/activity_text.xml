@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".text_Copy">
+    tools:context=".TextActivity">
 
     <Button
-        android:id="@+id/copyButton"
+        android:id="@+id/button_copy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
         android:text="@string/button_copy"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="477dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/backButton"
+        android:id="@+id/button_back2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="16dp"
         android:text="@string/back_text"
         app:layout_constraintStart_toStartOf="parent"
