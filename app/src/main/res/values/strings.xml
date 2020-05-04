@@ -5,4 +5,5 @@
     <string name="back_text">Back</string>
     <string name="confirm_text">Confirm</string>
     <string name="retake_photo">Change Photo</string>
+    <string name="desc">Image</string>
 </resources>

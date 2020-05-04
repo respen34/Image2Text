@@ -7,16 +7,6 @@
     tools:context=".Image_BoxEditor">
 
     <Button
-        android:id="@+id/confirmButton"
-        android:layout_width="393dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/confirm_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/changePhotoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,5 +15,29 @@
         android:text="@string/retake_photo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="393dp"
+        android:layout_height="633dp"
+        android:cropToPadding="true"
+        app:layout_constraintBottom_toTopOf="@+id/confirmButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.816"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changePhotoButton"
+        app:layout_constraintVertical_bias="0.158"
+        android:contentDescription="@string/desc"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="393dp"
+        android:layout_height="60dp"
+        android:text="@string/confirm_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

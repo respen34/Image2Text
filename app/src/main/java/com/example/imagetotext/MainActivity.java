@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View V) {
                 capturedImage = textureView.getBitmap();
                 Intent areaSelect = new Intent(MainActivity.this, Image_BoxEditor.class);
+                areaSelect.putExtra("imageToTransmitKey",capturedImage);
                 startActivity(areaSelect);
             }
         });
