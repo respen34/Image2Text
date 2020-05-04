@@ -11,7 +11,7 @@ import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 
-public abstract class  Image_BoxEditor extends AppCompatActivity {
+public class  Image_BoxEditor extends AppCompatActivity {
     public Button confirmObj;
     public Button recaptureObj;
     @Override
