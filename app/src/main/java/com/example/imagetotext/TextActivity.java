@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class TextActivity extends AppCompatActivity {
@@ -23,7 +24,7 @@ public class TextActivity extends AppCompatActivity {
         String text = intent.getExtras().getString("text", "");
         editText.setText(text, TextView.BufferType.NORMAL);
 
-        Button copyButton = findViewById(R.id.button_copy);
+        ImageButton copyButton = findViewById(R.id.button_copy);
         copyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
