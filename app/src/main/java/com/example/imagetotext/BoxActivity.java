@@ -7,33 +7,36 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.graphics.Bitmap;
-import android.widget.ImageView;
+
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 
 public class BoxActivity extends AppCompatActivity {
-    public Button confirmButton;
-    public Button backButton;
+    private CropImageView cropImageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_box);
 
-        confirmButton = findViewById(R.id.button_confirm);
+        cropImageView = findViewById(R.id.cropImageView);
+        cropImageView.setImageBitmap(MainActivity.getCapturedImage());
+
+        Button confirmButton = findViewById(R.id.button_confirm);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bitmap bitmap = MainActivity.getCapturedImage();
+                //Bitmap bitmap = MainActivity.getCapturedImage();
+                Bitmap bitmap = cropImageView.getCroppedImage();
                 Tesseract.setUpTesseract(BoxActivity.this);
-                String text = Tesseract.convertImage(bitmap, 0,0,
-                        bitmap.getWidth(), bitmap.getHeight());
-                System.out.println(text);
+                String text = Tesseract.convertImage(bitmap);
+                //System.out.println(text);
                 Intent intent = new Intent(BoxActivity.this, TextActivity.class);
                 intent.putExtra("text", text);
                 startActivity(intent);
             }
         });
 
-        backButton = findViewById(R.id.button_back);
+        Button backButton = findViewById(R.id.button_back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,10 +45,6 @@ public class BoxActivity extends AppCompatActivity {
             }
         });
 
-        Bitmap bitmap = MainActivity.getCapturedImage();
-        ImageView imageView = findViewById(R.id.imageView);
-        //Bitmap bmp = BitmapFactory.decodeByteArray(buffer, start, a);
-        imageView.setImageBitmap(bitmap);
     }
 }
 

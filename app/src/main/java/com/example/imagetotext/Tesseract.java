@@ -44,10 +44,9 @@ public class Tesseract {
     }
 
 
-    public static String convertImage(Bitmap image, int left, int top,
-                                      int right, int bottom) {
-        int width = right - left;
-        int height = bottom - top;
+    public static String convertImage(Bitmap image) {
+        //int width = right - left;
+        //int height = bottom - top;
         String path = DATA_PATH;
         System.out.println(path);
 
@@ -55,7 +54,7 @@ public class Tesseract {
         tesseract.init(path, "eng");
 
         tesseract.setImage(image);
-        tesseract.setRectangle(left, top, width, height);
+        //tesseract.setRectangle(left, top, width, height);
 
         String text = "";
         try {
