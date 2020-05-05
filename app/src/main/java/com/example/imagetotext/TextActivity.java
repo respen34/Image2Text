@@ -32,6 +32,8 @@ public class TextActivity extends AppCompatActivity {
                 ClipData clip = ClipData.newPlainText("Copied Text",
                         editText.getText());
                 cbManager.setPrimaryClip(clip);
+                TextView copyConfirmation = findViewById(R.id.textView);
+                copyConfirmation.setVisibility(View.VISIBLE);
             }
         });
 
@@ -41,6 +43,14 @@ public class TextActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent1 = new Intent(TextActivity.this, BoxActivity.class);
                 startActivity(intent1);
+            }
+        });
+
+        editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView copyConfirmation = findViewById(R.id.textView);
+                copyConfirmation.setVisibility(View.INVISIBLE);
             }
         });
     }
